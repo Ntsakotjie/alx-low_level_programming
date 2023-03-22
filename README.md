@@ -1,87 +1,17 @@
-TASKS
+0-print_name.c Write a function that prints a name.
 
-Trust no one
-Write a function that allocates memory using malloc.
+1-array_iterator.c Write a function that executes a function given as a parameter on each element of an array. where size is the size of the array and action is a pointer to the function you need to use
 
-Prototype: void *malloc_checked(unsigned int b);
+2-int_index.c Write a function that searches for an integer. where size is the number of elements in the array array cmp is a pointer to the function to be used to compare values int_index returns the index of the first element for which the cmp function does not return 0 If no element matches, return -1 If size <= 0, return -1
 
-Returns a pointer to the allocated memory
+3-op_functions.c Write a program that performs simple operations.
 
-if malloc fails, the malloc_checked function should cause normal process termination with a status value of 98
+You are allowed to use the standard library Usage: calc num1 operator num2 You can assume num1 and num2 are integers, so use the atoi function to convert them from the string input to int operator is one of the following: +: addition -: subtraction *: multiplication /: division %: modulo The program prints the result of the operation, followed by a new line You can assume that the result of all operations can be stored in an int if the number of arguments is wrong, print Error, followed by a new line, and exit with the status 98 if the operator is none of the above, print Error, followed by a new line, and exit with the status 99 if the user tries to divide (/ or %) by 0, print Error, followed by a new line, and exit with the status 100 This task requires that you create four different files. This file should contain the 5 following functions (not more):
 
-string_nconcat
-Write a function that concatenates two strings.
+op_add: returns the sum of a and b. Prototype: int op_add(int a, int b); op_sub: returns the difference of a and b. Prototype: int op_sub(int a, int b); op_mul: returns the product of a and b. Prototype: int op_mul(int a, int b); op_div: returns the result of the division of a by b. Prototype: int op_div(int a, int b); op_mod: returns the remainder of the division of a by b. Prototype: int op_mod(int a, int b);
 
-Prototype: char *string_nconcat(char *s1, char *s2, unsigned int n);
+3-get_op_func.c This file should contain the function that selects the correct function to perform the operation asked by the user. You’re not allowed to declare any other function.
 
-The returned pointer shall point to a newly allocated space in memory, which contains s1, followed by the first n bytes of s2, and null terminated
+Prototype: int (*get_op_func(char *s))(int, int); where s is the operator passed as argument to the program This function returns a pointer to the function that corresponds to the operator given as a parameter. Example: get_op_func("+") should return a pointer to the function op_add You are not allowed to use switch statements You are not allowed to use for or do ... while loops You are not allowed to use goto You are not allowed to use else You are not allowed to use more than one if statement in your code You are not allowed to use more than one while loop in your code If s does not match any of the 5 expected operators (+, -, *, /, %), return NULL You are only allowed to declare these two variables in this function:
 
-If the function fails, it should return NULL
-
-If n is greater or equal to the length of s2 then use the entire string s2
-
-if NULL is passed, treat it as an empty string
-
-calloc
-Write a function that allocates memory for an array, using malloc.
-
-Prototype: void *_calloc(unsigned int nmemb, unsigned int size);
-
-The _calloc function allocates memory for an array of nmemb elements of size bytes each and returns a pointer to the allocated memory.
-
-The memory is set to zero
-
-If nmemb or size is 0, then _calloc returns NULL
-
-If malloc fails, then _calloc returns NULL
-
-array_range
-Write a function that creates an array of integers.
-
-Prototype: int *array_range(int min, int max);
-
-The array created should contain all the values from min (included) to max (included), ordered from min to max
-
-Return: the pointer to the newly created array
-
-If min > max, return NULL
-
-If malloc fails, return NULL
-
-realloc
-Write a function that reallocates a memory block using malloc and free
-
-Prototype: void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-
-where ptr is a pointer to the memory previously allocated with a call to malloc: malloc(old_size)
-
-old_size is the size, in bytes, of the allocated space for ptr and new_size is the new size, in bytes of the new memory block
-
-The contents will be copied to the newly allocated space, in the range from the start of ptr up to the minimum of the old and new sizes
-
-If new_size > old_size, the “added” memory should not be initialized
-
-If new_size == old_size do not do anything and return ptr
-
-If ptr is NULL, then the call is equivalent to malloc(new_size), for all values of old_size and new_size
-
-If new_size is equal to zero, and ptr is not NULL, then the call is equivalent to free(ptr). Return NULL
-
-Don’t forget to free ptr when it makes sense
-
-We must accept finite disappointment, but never lose infinite hope
-Write a program that multiplies two positive numbers.
-
-Usage: mul num1 num2
-
-num1 and num2 will be passed in base 10
-
-Print the result, followed by a new line
-
-If the number of arguments is incorrect, print Error, followed by a new line, and exit with a status of 98
-
-num1 and num2 should only be composed of digits. If not, print Error, followed by a new line, and exit with a status of 98
-
-You are allowed to use more than 5 functions in your file
-
-You can use bc (man bc) to check your results
+3-calc.h This file should contain all the function prototypes and data structures used by the program. You can use this structure:
